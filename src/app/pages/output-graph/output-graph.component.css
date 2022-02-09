@@ -1,0 +1,8 @@
+.high-chart-main{
+    padding: 20px 200px;
+}
+.high-chart{
+    width: 100%; 
+    height: 400px; 
+    display: block;
+}

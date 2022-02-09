@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HighchartsChartModule } from 'highcharts-angular';
+import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,7 +17,9 @@ import {
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HighchartsChartModule
+    FormsModule,
+    ReactiveFormsModule,
+    HighchartsChartModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

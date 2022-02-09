@@ -23,6 +23,7 @@
       "dom"
     ],
     "allowJs": true,
+    "strictPropertyInitialization": false
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

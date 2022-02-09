@@ -1,4 +1,5 @@
 import { Component, OnInit} from "@angular/core";
+import { FormBuilder, FormGroup } from "@angular/forms";
 import * as Highcharts from "highcharts/highstock";
 import { Options } from "highcharts/highstock";
 
@@ -14,12 +15,9 @@ IndicatorZigzag(Highcharts);
   styleUrls: ['./output-graph.component.css']
 })
 export class OutputGraphComponent implements OnInit {
-
+  form: FormGroup;
   Highcharts: typeof Highcharts = Highcharts;
 
-  ngOnInit() {
-    console.log(window);
-  }
 
   chartOptions: Options = {
     title: {
@@ -70,4 +68,12 @@ export class OutputGraphComponent implements OnInit {
     }]
   };
 
+  constructor(
+    private formBuilder: FormBuilder
+  ) { 
+  }
+
+  ngOnInit() {
+    console.log(window);
+  }
 }

@@ -1,22 +1,30 @@
 <div class="high-chart-main">  
-    <label for="cars">Senser: </label>
-    <select id="cars" name="cars">
-        <option value="">Select Senser</option>
-        <option value="Humidity">Humidity</option>
-        <option value="Temperature">Temperature</option>
-    </select>,
-    &nbsp;
-    <label for="cars">Senser: </label>
-    <select id="cars" name="cars">
-        <option value="">Select Senser</option>
-        <option value="Humidity">Humidity</option>
-        <option value="Temperature">Temperature</option>
-    </select>
+    <form [formGroup]="form">
+        <label for="senser_1">Senser: </label>
+        <select id="senser_1" name="senser_1" formControlName="senser_1">
+            <option value="">Select Senser</option>
+            <option value="Humidity">Humidity</option>
+            <option value="Temperature">Temperature</option>
+        </select>,
+        &nbsp;
+        <label for="senser_2">Senser: </label>
+        <select id="senser_2" name="senser_2" formControlName="senser_2">
+            <option value="">Select Senser</option>
+            <option value="Humidity">Humidity</option>
+            <option value="Temperature">Temperature</option>
+        </select>
+    </form> 
 
-    <highcharts-chart
-    class="high-chart"
-    [Highcharts]="Highcharts" 
-    [constructorType]="'stockChart'" 
-    [options]="chartOptions">
-    </highcharts-chart>
+    <div *ngIf="filter">
+        <highcharts-chart
+        class="high-chart"
+        [Highcharts]="Highcharts" 
+        [constructorType]="'stockChart'" 
+        [options]="chartOptions">
+        </highcharts-chart>
+    </div>
+
+    <div style="padding-top: 20px;" *ngIf="!filter">
+        Loading ...
+    </div>
 </div>

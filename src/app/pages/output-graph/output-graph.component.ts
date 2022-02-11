@@ -222,13 +222,13 @@ export class OutputGraphComponent implements OnInit {
         title: {
             text: 'Warter level',
             style: {
-                color: Highcharts.getOptions().colors[0]
+                color: Highcharts.getOptions().colors[1]
             }
         },
         labels: {
             format: '{value} mm',
             style: {
-                color: Highcharts.getOptions().colors[0]
+                color: Highcharts.getOptions().colors[1]
             }
         }
       },
@@ -239,7 +239,7 @@ export class OutputGraphComponent implements OnInit {
           tooltip: {
             valueSuffix: ' mm'
           },
-          color: Highcharts.getOptions().colors[0]
+          color: Highcharts.getOptions().colors[1]
       }
     }
 

@@ -15,6 +15,18 @@ export class OutputGraphComponent implements OnInit {
   filter: boolean = false;
 
   chartOptions: Options = {
+    chart: {
+      zoomType: 'x',
+      events: {
+        load: updateLegendLabel
+      }
+    },
+    legend: {
+      enabled: true
+    },
+    rangeSelector:{
+      enabled:true,
+    },
     title: {
       text: 'Average Monthly Weather Data',
       align: 'left'
@@ -22,6 +34,11 @@ export class OutputGraphComponent implements OnInit {
     subtitle: {
         text: 'Source: abc.com',
         align: 'left'
+    },
+    xAxis: {
+      events: {
+        afterSetExtremes: updateLegendLabel
+      }
     },
     yAxis: [],
     tooltip: {
@@ -36,7 +53,6 @@ export class OutputGraphComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(window);
 
     this.createForm();
 
@@ -87,7 +103,8 @@ export class OutputGraphComponent implements OnInit {
           data: [[1581345000000,20], [1581431400000,200.9], [1581517800000, 30.5], [1581604200000, 40.5], [1581690600000, 18.2], [1582036200000, 21.5], [1582122600000, 25.2], [1582209000000, 26.5], [1582295400000, 100.3], [1582554600000, 18.3], [1582641000000, 13.9], [1582727400000, 9.6]],
           tooltip: {
             valueSuffix: ' °F'
-          }
+          },
+          color: Highcharts.getOptions().colors[2]
       }
     }
 
@@ -113,7 +130,8 @@ export class OutputGraphComponent implements OnInit {
           data: [[1581345000000, 20.9], [1581431400000, 71.5], [1581517800000, 106.4], [1581604200000, 129.2], [1581690600000, 144.0], [1582036200000, 176.0], [1582122600000, 135.6], [1582209000000, 148.5], [1582295400000, 216.4], [1582554600000, 194.1], [1582641000000, 95.6], [1582727400000, 54.4]],
           tooltip: {
             valueSuffix: ' %'
-          }
+          },
+          color: Highcharts.getOptions().colors[0]
       }
     }
     let yAxis = [];
@@ -183,13 +201,47 @@ export class OutputGraphComponent implements OnInit {
     this.chartOptions.yAxis = yAxis;
     this.chartOptions.series = series;
 
-    console.log(yAxis)
-    console.log(series)
-
     if(yAxis.length > 0){
       setTimeout(() => {
         this.filter = true;
       }, 100);
     }
   }
+}
+
+function updateLegendLabel() {
+  var chrt = !this.chart ? this : this.chart;
+  chrt.update({
+    legend: {
+      labelFormatter: function() {
+        var lastVal = this.yData[this.yData.length - 1],
+          chart = this.chart,
+          xAxis = this.xAxis,
+          points = this.points,
+          avg = 0,
+          counter = 0,
+          min, max;
+
+        points.forEach(function(point, inx) {
+          if (!min || min > point.y) {
+            min = point.y;
+          }
+
+          if (!max || max < point.y) {
+            max = point.y;
+          }
+
+          counter++;
+          avg += point.y;
+        });
+        counter--;
+        avg /= counter;
+
+        return this.name + '<br>' + 'Now: ' + lastVal + ' <br>' +
+        '<span style="color: red">Min: ' + min + ' </span><br/>' +
+        '<span style="color: red">Max: ' + max + ' </span><br/>' +
+        '<span style="color: red">Average: ' + avg.toFixed(2);
+      }
+    }
+  });
 }

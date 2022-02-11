@@ -134,70 +134,129 @@ export class OutputGraphComponent implements OnInit {
           color: Highcharts.getOptions().colors[0]
       }
     }
+
+    let water = {
+      yAxis: { 
+        gridLineWidth: 0,
+        title: {
+            text: 'Warter level',
+            style: {
+                color: Highcharts.getOptions().colors[0]
+            }
+        },
+        labels: {
+            format: '{value} mm',
+            style: {
+                color: Highcharts.getOptions().colors[0]
+            }
+        }
+      },
+      series: {
+          name: 'Warter level',
+          type: 'spline',
+          data: [[1581345000000, 200.9], [1581431400000, 100.5], [1581517800000, 300.4], [1581604200000, 100.2], [1581690600000, 50.0], [1582036200000, 150.0], [1582122600000, 135.6], [1582209000000, 148.5], [1582295400000, 216.4], [1582554600000, 194.1], [1582641000000, 95.6], [1582727400000, 54.4]],
+          tooltip: {
+            valueSuffix: ' mm'
+          },
+          color: Highcharts.getOptions().colors[0]
+      }
+    }
+
     let yAxis = [];
     let series = [];
-    if(data.senser_1){
- 
-      if(data.senser_1 == 'Humidity'){
-        yAxis.push(
-          {
-            ...humidity.yAxis,
-            opposite:false,
-          }
-        )
-        series.push(
-          {
-            ...humidity.series,
-            yAxis: data.senser_1 && data.senser_2? 1: undefined,
-          }
-        )
-      }else{
 
-        yAxis.push(
-          {
-            ...temperature.yAxis,
-            opposite:false
-          }
-        )
-        series.push(
-          {
-            ...temperature.series,
-            yAxis: data.senser_1 && data.senser_2? 1: undefined,
-          }
-        )
-      }
+    if(data.senser_1.length > 0){
+      data.senser_1.map((item)=> {
+        if(item == 'Humidity'){
+          yAxis.push(
+            {
+              ...humidity.yAxis,
+              opposite:false,
+            }
+          )
+          series.push(
+            {
+              ...humidity.series,
+            }
+          )
+        }else if(item == 'Temperature'){
+  
+          yAxis.push(
+            {
+              ...temperature.yAxis,
+              opposite:false
+            }
+          )
+          series.push(
+            {
+              ...temperature.series,
+            }
+          )
+        }else{
+          yAxis.push(
+            {
+              ...water.yAxis,
+              opposite:false
+            }
+          )
+          series.push(
+            {
+              ...water.series,
+            }
+          )
+        }
+
+      })
     }
 
-    if(data.senser_2){
- 
-      if(data.senser_2 == 'Temperature'){
-        yAxis.push(
-          {
-            ...temperature.yAxis,
-            opposite:true,
-          }
-        )
-        series.push(
-          {
-            ...temperature.series,
-          }
-        )
-      }else{
+    if(data.senser_2.length > 0){
+      data.senser_2.map((item)=> {
+        if(item == 'Humidity'){
+          yAxis.push(
+            {
+              ...humidity.yAxis,
+              opposite:true,
+            }
+          )
+          series.push(
+            {
+              ...humidity.series,
+            }
+          )
+        }else if(item == 'Temperature'){
+  
+          yAxis.push(
+            {
+              ...temperature.yAxis,
+              opposite:true,
+            }
+          )
+          series.push(
+            {
+              ...temperature.series,
+            }
+          )
+        }else{
+          yAxis.push(
+            {
+              ...water.yAxis,
+              opposite:true,
+            }
+          )
+          series.push(
+            {
+              ...water.series,
+            }
+          )
+        }
 
-        yAxis.push(
-          {
-            ...humidity.yAxis,
-            opposite:true,
-          }
-        )
-        series.push(
-          {
-            ...humidity.series,
-          }
-        )
-      }
+      })
     }
-
+    series.map((item, index)=>{
+      if(index+1 != series.length){
+        series[index].yAxis = index +1;
+      }
+    })
     this.chartOptions.yAxis = yAxis;
     this.chartOptions.series = series;
 

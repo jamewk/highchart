@@ -3,6 +3,9 @@ import { FormBuilder, FormGroup } from "@angular/forms";
 import * as Highcharts from "highcharts/highstock";
 import { Options } from "highcharts/highstock";
 
+import * as humidity from '../output-graph/humidity.json';
+import * as temp from '../output-graph/temp.json';
+import * as water_level from '../output-graph/water_level.json';
 
 @Component({
   selector: 'app-output-graph',
@@ -19,7 +22,7 @@ export class OutputGraphComponent implements OnInit {
 
   chartOptions: Options = {
     chart: {
-      zoomType: 'x',
+      zoomType: 'xy',
       events: {
         load: updateLegendLabel
       }
@@ -29,6 +32,7 @@ export class OutputGraphComponent implements OnInit {
     },
     rangeSelector:{
       enabled:true,
+      selected: 1,
     },
     title: {
       text: 'Average Monthly Weather Data',
@@ -50,13 +54,15 @@ export class OutputGraphComponent implements OnInit {
     series: []
   };
 
+  private humidity = humidity;
+  private temp = temp;
+  private water_level = water_level;
   constructor(
     private formBuilder: FormBuilder
   ) { 
   }
 
   ngOnInit() {
-
     this.createForm();
 
     this.setDataChart();
@@ -181,7 +187,7 @@ export class OutputGraphComponent implements OnInit {
       series: {
           name: 'Temperature',
           type: 'spline',
-          data: [[1581345000000,20], [1581431400000,200.9], [1581517800000, 30.5], [1581604200000, 40.5], [1581690600000, 18.2], [1582036200000, 21.5], [1582122600000, 25.2], [1582209000000, 26.5], [1582295400000, 100.3], [1582554600000, 18.3], [1582641000000, 13.9], [1582727400000, 9.6]],
+          data: this.temp['data'],
           tooltip: {
             valueSuffix: ' °F'
           },
@@ -208,7 +214,7 @@ export class OutputGraphComponent implements OnInit {
       series: {
           name: 'Humidity',
           type: 'spline',
-          data: [[1581345000000, 20.9], [1581431400000, 71.5], [1581517800000, 106.4], [1581604200000, 129.2], [1581690600000, 144.0], [1582036200000, 176.0], [1582122600000, 135.6], [1582209000000, 148.5], [1582295400000, 216.4], [1582554600000, 194.1], [1582641000000, 95.6], [1582727400000, 54.4]],
+          data: this.humidity['data'],
           tooltip: {
             valueSuffix: ' %'
           },
@@ -235,7 +241,7 @@ export class OutputGraphComponent implements OnInit {
       series: {
           name: 'Warter level',
           type: 'spline',
-          data: [[1581345000000, 200.9], [1581431400000, 100.5], [1581517800000, 300.4], [1581604200000, 100.2], [1581690600000, 50.0], [1582036200000, 150.0], [1582122600000, 135.6], [1582209000000, 148.5], [1582295400000, 216.4], [1582554600000, 194.1], [1582641000000, 95.6], [1582727400000, 54.4]],
+          data: this.water_level['data'],
           tooltip: {
             valueSuffix: ' mm'
           },

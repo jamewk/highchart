@@ -23,6 +23,7 @@
       "es2020",
       "dom"
     ],
+    "resolveJsonModule": true,
     "strictPropertyInitialization": false,
     "strictNullChecks": false,
     "noImplicitAny": false,

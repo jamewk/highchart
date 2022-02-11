@@ -22,7 +22,6 @@ export class OutputGraphComponent implements OnInit {
 
   chartOptions: Options = {
     chart: {
-      zoomType: 'xy',
       events: {
         load: updateLegendLabel
       }
@@ -31,8 +30,7 @@ export class OutputGraphComponent implements OnInit {
       enabled: true
     },
     rangeSelector:{
-      enabled:true,
-      selected: 1,
+      selected: 1
     },
     title: {
       text: 'Average Monthly Weather Data',
@@ -63,6 +61,7 @@ export class OutputGraphComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log(this.temp.data)
     this.createForm();
 
     this.setDataChart();
@@ -172,7 +171,7 @@ export class OutputGraphComponent implements OnInit {
     let temperature = {
       yAxis: { 
         labels: {
-          format: '{value}°F',
+          format: '{value}°C',
           style: {
               color: Highcharts.getOptions().colors[2]
           }
@@ -189,7 +188,7 @@ export class OutputGraphComponent implements OnInit {
           type: 'spline',
           data: this.temp['data'],
           tooltip: {
-            valueSuffix: ' °F'
+            valueSuffix: ' °C'
           },
           color: Highcharts.getOptions().colors[2]
       }
@@ -368,7 +367,7 @@ function updateLegendLabel() {
           avg = 0,
           counter = 0,
           min, max;
-
+        console.log(points.length)
         points.forEach(function(point, inx) {
           if (!min || min > point.y) {
             min = point.y;

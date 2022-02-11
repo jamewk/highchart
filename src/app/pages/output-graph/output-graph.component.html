@@ -1,7 +1,47 @@
 <div class="high-chart-main">  
-    <form [formGroup]="form">
-        <label for="senser_1">Sensor: </label>
-        <select id="senser_1" name="senser_1" formControlName="senser_1" multiple>
+    <form [formGroup]="form" style="text-align: center;">
+       
+        <div class="row">
+            <div class="col-6">
+                <div class="multiselect">
+                    <div class="selectBox" (click)="showCheckboxes1()">
+                      <select>
+                        <option>Select an Sensor Left...</option>
+                      </select>
+                      <div class="overSelect"></div>
+                    </div>
+                    <div id="checkboxes1">
+                      <label for="one">
+                        <input type="checkbox" id="sensor1" value="Humidity" (click)="setSenser1('Humidity')"/>Humidity</label>
+                      <label for="two">
+                        <input type="checkbox" id="sensor1" value="Temperature" (click)="setSenser1('Temperature')"/>Temperature</label>
+                      <label for="three">
+                        <input type="checkbox" id="sensor1"  value="Water level" (click)="setSenser1('Water level')"/>Water level</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-6 float-right">
+                <div class="multiselect">
+                    <div class="selectBox" (click)="showCheckboxes2()">
+                      <select>
+                        <option>Select an Sensor Right...</option>
+                      </select>
+                      <div class="overSelect"></div>
+                    </div>
+                    <div id="checkboxes2">
+                        <label for="one">
+                          <input type="checkbox" id="sensor2" value="Humidity" (click)="setSenser2('Humidity')"/>Humidity</label>
+                        <label for="two">
+                          <input type="checkbox" id="sensor2" value="Temperature" (click)="setSenser2('Temperature')"/>Temperature</label>
+                        <label for="three">
+                          <input type="checkbox" id="sensor2"  value="Water level" (click)="setSenser2('Water level')"/>Water level</label>
+                      </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- <select id="senser_1" name="senser_1" formControlName="senser_1" multiple>
             <option value="">Select Sensor</option>
             <option value="Humidity">Humidity</option>
             <option value="Temperature">Temperature</option>
@@ -14,7 +54,7 @@
             <option value="Humidity">Humidity</option>
             <option value="Temperature">Temperature</option>
             <option value="Water level">Water level</option>
-        </select>
+        </select> -->
     </form> 
 
     <div *ngIf="filter">

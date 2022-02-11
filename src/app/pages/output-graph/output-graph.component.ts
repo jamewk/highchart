@@ -14,6 +14,9 @@ export class OutputGraphComponent implements OnInit {
   Highcharts: typeof Highcharts = Highcharts;
   filter: boolean = false;
 
+  expanded1 = false;
+  expanded2 = false;
+
   chartOptions: Options = {
     chart: {
       zoomType: 'x',
@@ -76,6 +79,84 @@ export class OutputGraphComponent implements OnInit {
       senser_1: [""],
       senser_2: [""],
     })
+  }
+
+  
+
+  showCheckboxes1() {
+    var checkboxes = document.getElementById("checkboxes1");
+    if (!this.expanded1) {
+      checkboxes.style.display = "block";
+      this.expanded1 = true;
+    } else {
+      checkboxes.style.display = "none";
+      this.expanded1 = false;
+    }
+  }
+
+  showCheckboxes2() {
+    var checkboxes = document.getElementById("checkboxes2");
+    if (!this.expanded2) {
+      checkboxes.style.display = "block";
+      this.expanded2 = true;
+    } else {
+      checkboxes.style.display = "none";
+      this.expanded2 = false;
+    }
+  }
+
+  setSenser1(text){
+    console.log(text)
+
+    let data = this.form.getRawValue().senser_1;
+
+    if(data.length > 0){
+      var index = data.indexOf(text);
+      console.log(index)
+      if (index !== -1) {
+        data.splice(index, 1);
+      }else{
+
+        data = [
+          ...data,
+          ...[
+            text
+          ]
+        ]
+      }
+
+    }else{
+      data = [text]
+    }
+
+    this.form.get('senser_1').setValue(data);
+    console.log(data)
+  }
+
+  setSenser2(text){
+    console.log(text)
+
+    let data = this.form.getRawValue().senser_2;
+
+    if(data.length > 0){
+      var index = data.indexOf(text);
+      console.log(index)
+      if (index !== -1) {
+        data.splice(index, 1);
+      }else{
+
+        data = [
+          ...data,
+          ...[
+            text
+          ]
+        ]
+      }
+    }else{
+      data = [text]
+    }
+
+    this.form.get('senser_2').setValue(data);
   }
 
   setDataChart(){
@@ -164,6 +245,7 @@ export class OutputGraphComponent implements OnInit {
 
     let yAxis = [];
     let series = [];
+    console.log(data.senser_1);
 
     if(data.senser_1.length > 0){
       data.senser_1.map((item)=> {

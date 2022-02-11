@@ -130,7 +130,7 @@ export class OutputGraphComponent implements OnInit {
         series.push(
           {
             ...humidity.series,
-            yAxis: 1,
+            yAxis: data.senser_1 && data.senser_2? 1: undefined,
           }
         )
       }else{
@@ -144,7 +144,7 @@ export class OutputGraphComponent implements OnInit {
         series.push(
           {
             ...temperature.series,
-            yAxis: 1,
+            yAxis: data.senser_1 && data.senser_2? 1: undefined,
           }
         )
       }
@@ -186,7 +186,7 @@ export class OutputGraphComponent implements OnInit {
     console.log(yAxis)
     console.log(series)
 
-    if(yAxis.length > 1){
+    if(yAxis.length > 0){
       setTimeout(() => {
         this.filter = true;
       }, 100);

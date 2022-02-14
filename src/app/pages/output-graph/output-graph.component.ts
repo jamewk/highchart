@@ -6,6 +6,7 @@ import { Options } from "highcharts/highstock";
 import * as humidity from '../output-graph/humidity.json';
 import * as temp from '../output-graph/temp.json';
 import * as water_level from '../output-graph/water_level.json';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-output-graph',
@@ -173,7 +174,12 @@ export class OutputGraphComponent implements OnInit {
         }, 100);
       }
 
-      alert("สำหรับ package ที่สูงกว่ากรุณาติดต่อ Admin เพื่อดำเนินการ");
+      Swal.fire({
+        icon: 'warning',
+        title: "คำเตือน", 
+        html: "สำหรับ package ที่สูงกว่ากรุณาติดต่อ Admin เพื่อดำเนินการ",
+        confirmButtonText: "ตกลง", 
+      });
       return;
     }
 
@@ -227,7 +233,12 @@ export class OutputGraphComponent implements OnInit {
         }, 100);
       }
 
-      alert("สำหรับ package ที่สูงกว่ากรุณาติดต่อ Admin เพื่อดำเนินการ");
+      Swal.fire({
+        icon: 'warning',
+        title: "คำเตือน", 
+        html: "สำหรับ package ที่สูงกว่ากรุณาติดต่อ Admin เพื่อดำเนินการ",
+        confirmButtonText: "ตกลง", 
+      });
       return;
     }
 

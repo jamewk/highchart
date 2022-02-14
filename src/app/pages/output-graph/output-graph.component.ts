@@ -76,38 +76,7 @@ export class OutputGraphComponent implements OnInit {
 
     this.form.controls['senser_1'].valueChanges.subscribe(
       (value) => {
-        let sensers = [
-          ...this.form.getRawValue().senser_1,
-          ...this.form.getRawValue().senser_2
-        ]
-   
-        if(sensers.length > this.form.getRawValue().max){
-
-          // if(value.includes('Humidity')){
-   
-          //   setTimeout(() => {
-          //     this.checks.chk11 = true;
-          //   }, 100);
-          // }else{
-          //   setTimeout(() => {
-          //     this.checks.chk11 = false;
-          //   }, 100);
-          // }
-          
-          // if(value.includes('Temperature')){
-          //   setTimeout(() => {
-          //     this.checks.chk11 = true;
-          //   }, 100);
-          // }else{
-          //   setTimeout(() => {
-          //     this.checks.chk11 = true;
-          //   }, 100);
-          // }
-
-          alert("สำหรับ package ที่สูงกว่ากรุณาติดต่อ Admin เพื่อดำเนินการ");
-          return;
-        }
-
+        
         this.setDataChart();
       }
     );
@@ -118,25 +87,6 @@ export class OutputGraphComponent implements OnInit {
           ...this.form.getRawValue().senser_1,
           ...this.form.getRawValue().senser_2
         ]
-        if(sensers.length  > this.form.getRawValue().max){
-          // if(value.includes('Humidity')){
-   
-          //   setTimeout(() => {
-          //     this.checks.chk21 = false;
-          //   }, 100);
-          // }else if(value.includes('Temperature')){
-          //   setTimeout(() => {
-          //     this.checks.chk22 = false;
-          //   }, 100);
-          // }else{
-          //   setTimeout(() => {
-          //     this.checks.chk23 = false;
-          //   }, 100);
-          // }
-
-          alert("สำหรับ package ที่สูงกว่ากรุณาติดต่อ Admin เพื่อดำเนินการ");
-          return;
-        }
 
         this.setDataChart();
       }
@@ -198,6 +148,36 @@ export class OutputGraphComponent implements OnInit {
       data = [text]
     }
 
+    let sensers = [
+      ...data,
+      ...this.form.getRawValue().senser_2
+    ]
+
+    if(sensers.length > this.form.getRawValue().max){
+
+      if(text == 'Humidity'){
+
+        setTimeout(() => {
+          this.checks.chk11 = false;
+        }, 100);
+      }
+      if(text== 'Temperature'){
+        setTimeout(() => {
+          this.checks.chk12 = false;
+        }, 100);
+      }
+      
+      if(text == 'Water level'){
+        setTimeout(() => {
+          this.checks.chk13 = false;
+        }, 100);
+      }
+
+      alert("สำหรับ package ที่สูงกว่ากรุณาติดต่อ Admin เพื่อดำเนินการ");
+      return;
+    }
+
+
     this.form.get('senser_1').setValue(data);
   }
 
@@ -220,6 +200,35 @@ export class OutputGraphComponent implements OnInit {
       }
     }else{
       data = [text]
+    }
+
+    let sensers = [
+      ...data,
+      ...this.form.getRawValue().senser_1
+    ]
+
+    if(sensers.length > this.form.getRawValue().max){
+
+      if(text == 'Humidity'){
+
+        setTimeout(() => {
+          this.checks.chk21 = false;
+        }, 100);
+      }
+      if(text== 'Temperature'){
+        setTimeout(() => {
+          this.checks.chk22 = false;
+        }, 100);
+      }
+      
+      if(text == 'Water level'){
+        setTimeout(() => {
+          this.checks.chk23 = false;
+        }, 100);
+      }
+
+      alert("สำหรับ package ที่สูงกว่ากรุณาติดต่อ Admin เพื่อดำเนินการ");
+      return;
     }
 
     this.form.get('senser_2').setValue(data);

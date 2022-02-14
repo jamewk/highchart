@@ -1,6 +1,16 @@
 <div class="high-chart-main">  
     <form [formGroup]="form" style="text-align: center;">
-       
+        <div class="row">
+          <div class="col-12 mb-5 d-flex justify-content-end">
+            <label for="cars" class="mr-2">Max sensor: </label>
+            <select  name="cars" id="cars" formControlName="max">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+            </select>
+          </div>
+        </div>
         <div class="row">
             <div class="col-6">
                 <div class="multiselect">
@@ -13,11 +23,11 @@
                     </div>
                     <div id="checkboxes1">
                       <label for="one">
-                        <input type="checkbox" id="sensor1" value="Humidity" (click)="setSenser1('Humidity')"/>Humidity</label>
+                        <input type="checkbox" id="sensor1" (click)="setSenser1('Humidity')" [(ngModel)]="checks.chk11" [ngModelOptions]="{standalone: true}">Humidity</label>
                       <label for="two">
-                        <input type="checkbox" id="sensor1" value="Temperature" (click)="setSenser1('Temperature')"/>Temperature</label>
+                        <input type="checkbox" id="sensor1" (click)="setSenser1('Temperature')" [(ngModel)]="checks.chk12" [ngModelOptions]="{standalone: true}"/>Temperature</label>
                       <label for="three">
-                        <input type="checkbox" id="sensor1"  value="Water level" (click)="setSenser1('Water level')"/>Water level</label>
+                        <input type="checkbox" id="sensor1" (click)="setSenser1('Water level')" [(ngModel)]="checks.chk13" [ngModelOptions]="{standalone: true}"/>Water level</label>
                     </div>
                 </div>
             </div>
@@ -32,11 +42,11 @@
                     </div>
                     <div id="checkboxes2">
                         <label for="one">
-                          <input type="checkbox" id="sensor2" value="Humidity" (click)="setSenser2('Humidity')"/>Humidity</label>
+                          <input type="checkbox" id="sensor2" value="Humidity" (click)="setSenser2('Humidity')" [(ngModel)]="checks.chk21" [ngModelOptions]="{standalone: true}"/>Humidity</label>
                         <label for="two">
-                          <input type="checkbox" id="sensor2" value="Temperature" (click)="setSenser2('Temperature')"/>Temperature</label>
+                          <input type="checkbox" id="sensor2" value="Temperature" (click)="setSenser2('Temperature')" [(ngModel)]="checks.chk22" [ngModelOptions]="{standalone: true}"/>Temperature</label>
                         <label for="three">
-                          <input type="checkbox" id="sensor2"  value="Water level" (click)="setSenser2('Water level')"/>Water level</label>
+                          <input type="checkbox" id="sensor2"  value="Water level" (click)="setSenser2('Water level')" [(ngModel)]="checks.chk23" [ngModelOptions]="{standalone: true}"/>Water level</label>
                       </div>
                 </div>
             </div>

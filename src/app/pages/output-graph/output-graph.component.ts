@@ -13,6 +13,14 @@ import * as water_level from '../output-graph/water_level.json';
   styleUrls: ['./output-graph.component.css']
 })
 export class OutputGraphComponent implements OnInit {
+  checks = {
+    chk11: false,
+    chk12: false,
+    chk13: false,
+    chk21: false,
+    chk22: false,
+    chk23: false,
+  }
   form: FormGroup;
   Highcharts: typeof Highcharts = Highcharts;
   filter: boolean = false;
@@ -68,12 +76,38 @@ export class OutputGraphComponent implements OnInit {
 
     this.form.controls['senser_1'].valueChanges.subscribe(
       (value) => {
+        let sensers = [
+          ...this.form.getRawValue().senser_1,
+          ...this.form.getRawValue().senser_2
+        ]
+   
+        if(sensers.length > this.form.getRawValue().max){
+          // console.log(value.includes('Humidity'))
+          // if(value.includes('Humidity')){
+          //   console.log(this.checks.chk11);
+          //   this.checks.chk11 = false;
+          // }
+
+          alert("สำหรับ package ที่สูงกว่ากรุณาติดต่อ Admin เพื่อดำเนินการ");
+          return;
+        }
+
         this.setDataChart();
       }
     );
 
     this.form.controls['senser_2'].valueChanges.subscribe(
       (value) => {
+        let sensers = [
+          ...this.form.getRawValue().senser_1,
+          ...this.form.getRawValue().senser_2
+        ]
+        if(sensers.length  > this.form.getRawValue().max){
+
+          alert("สำหรับ package ที่สูงกว่ากรุณาติดต่อ Admin เพื่อดำเนินการ");
+          return;
+        }
+
         this.setDataChart();
       }
     );
@@ -83,6 +117,7 @@ export class OutputGraphComponent implements OnInit {
     this.form = this.formBuilder.group({
       senser_1: [""],
       senser_2: [""],
+      max: ["1"]
     })
   }
 
@@ -111,13 +146,12 @@ export class OutputGraphComponent implements OnInit {
   }
 
   setSenser1(text){
-    console.log(text)
+
 
     let data = this.form.getRawValue().senser_1;
 
     if(data.length > 0){
       var index = data.indexOf(text);
-      console.log(index)
       if (index !== -1) {
         data.splice(index, 1);
       }else{
@@ -135,17 +169,14 @@ export class OutputGraphComponent implements OnInit {
     }
 
     this.form.get('senser_1').setValue(data);
-    console.log(data)
   }
 
   setSenser2(text){
-    console.log(text)
 
     let data = this.form.getRawValue().senser_2;
 
     if(data.length > 0){
       var index = data.indexOf(text);
-      console.log(index)
       if (index !== -1) {
         data.splice(index, 1);
       }else{

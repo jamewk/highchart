@@ -82,11 +82,21 @@ export class OutputGraphComponent implements OnInit {
         ]
    
         if(sensers.length > this.form.getRawValue().max){
-          // console.log(value.includes('Humidity'))
-          // if(value.includes('Humidity')){
-          //   console.log(this.checks.chk11);
-          //   this.checks.chk11 = false;
-          // }
+
+          if(value.includes('Humidity')){
+   
+            setTimeout(() => {
+              this.checks.chk11 = false;
+            }, 100);
+          }else if(value.includes('Temperature')){
+            setTimeout(() => {
+              this.checks.chk12 = false;
+            }, 100);
+          }else{
+            setTimeout(() => {
+              this.checks.chk13 = false;
+            }, 100);
+          }
 
           alert("สำหรับ package ที่สูงกว่ากรุณาติดต่อ Admin เพื่อดำเนินการ");
           return;
@@ -103,6 +113,20 @@ export class OutputGraphComponent implements OnInit {
           ...this.form.getRawValue().senser_2
         ]
         if(sensers.length  > this.form.getRawValue().max){
+          if(value.includes('Humidity')){
+   
+            setTimeout(() => {
+              this.checks.chk21 = false;
+            }, 100);
+          }else if(value.includes('Temperature')){
+            setTimeout(() => {
+              this.checks.chk22 = false;
+            }, 100);
+          }else{
+            setTimeout(() => {
+              this.checks.chk23 = false;
+            }, 100);
+          }
 
           alert("สำหรับ package ที่สูงกว่ากรุณาติดต่อ Admin เพื่อดำเนินการ");
           return;

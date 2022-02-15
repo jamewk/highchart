@@ -151,7 +151,6 @@ export class OutputGraphComponent implements OnInit {
 
     let sensers = [
       ...data,
-      ...this.form.getRawValue().senser_2
     ]
 
     if(sensers.length > this.form.getRawValue().max){
@@ -210,7 +209,6 @@ export class OutputGraphComponent implements OnInit {
 
     let sensers = [
       ...data,
-      ...this.form.getRawValue().senser_1
     ]
 
     if(sensers.length > this.form.getRawValue().max){

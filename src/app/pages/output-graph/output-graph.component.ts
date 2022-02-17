@@ -70,7 +70,7 @@ export class OutputGraphComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.temp.data)
+    // console.log(this.temp.data)
     this.createForm();
 
     this.setDataChart();
@@ -329,7 +329,7 @@ export class OutputGraphComponent implements OnInit {
 
     let yAxis = [];
     let series = [];
-    console.log(data.senser_1);
+    // console.log(data.senser_1);
 
     if(data.senser_1.length > 0){
       data.senser_1.map((item)=> {
@@ -444,10 +444,10 @@ function updateLegendLabel() {
           xAxis = this.xAxis,
           points = this.points,
           avg = 0,
-          counter = 0,
           min, max;
-        console.log(points.length)
+
         points.forEach(function(point, inx) {
+          console.log(point.y)
           if (!min || min > point.y) {
             min = point.y;
           }
@@ -456,11 +456,10 @@ function updateLegendLabel() {
             max = point.y;
           }
 
-          counter++;
           avg += point.y;
         });
-        counter--;
-        avg /= counter;
+        avg /= points.length;
+
 
         return this.name + '<br>' + 'Now: ' + lastVal + ' <br>' +
         '<span style="color: red">Min: ' + min + ' </span><br/>' +

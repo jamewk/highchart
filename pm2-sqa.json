@@ -1,0 +1,13 @@
+{
+    "apps": [{
+      "name": "cms-fe",
+      "script": "./frontend.js",
+      "watch": false,
+      "cwd": "./",
+      "env": {
+        "FE_PORT": 80,
+        "SSL": false
+      }
+    }]
+  }
+  

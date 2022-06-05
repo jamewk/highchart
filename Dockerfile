@@ -15,7 +15,7 @@ COPY . .
 ARG BUILD_ENV
 ENV BUILD_ENV ${BUILD_ENV}
 
-RUN $(npm bin)/ng build --prod --build-optimizer=false --configuration=${BUILD_ENV}
+RUN $(npm bin)/ng build --prod --build-optimizer=false --output-path=dist --configuration=${BUILD_ENV}
 
 FROM node:12.20.1-alpine
 

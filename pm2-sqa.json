@@ -1,6 +1,6 @@
 {
     "apps": [{
-      "name": "cms-fe",
+      "name": "highchart",
       "script": "./frontend.js",
       "watch": false,
       "cwd": "./",

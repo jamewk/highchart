@@ -1,4 +1,4 @@
-FROM node:12.20.1-alpine AS builder
+FROM node:16.15-alpine AS builder
 
 COPY package*.json /
 
@@ -17,7 +17,7 @@ ENV BUILD_ENV ${BUILD_ENV}
 
 RUN $(npm bin)/ng build --prod --build-optimizer=false --output-path=dist --configuration=${BUILD_ENV}
 
-FROM node:12.20.1-alpine
+FROM node:16.15-alpine
 
 ENV TZ=Asia/Bangkok
 RUN apk add tzdata \

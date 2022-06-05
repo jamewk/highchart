@@ -13,7 +13,7 @@ COPY . .
 
 ARG BUILD_ENV
 
-RUN node --max_old_space_size=2048 ./node_modules/@angular/cli/bin/ng build --prod --build-optimizer=false --output-path=dist --configuration=${BUILD_ENV} --prod
+RUN node --max_old_space_size=4096 ./node_modules/@angular/cli/bin/ng build --prod --build-optimizer=false --output-path=dist --configuration=${BUILD_ENV}
 
 FROM node:16-alpine
 

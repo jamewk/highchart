@@ -19,10 +19,10 @@ app.use(
     ]
   })
 );
-app.use(express.static(__dirname + "/dist/highchart"));
+app.use(express.static(__dirname + "/dist"));
 
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "dist/highchart/index.html"));
+  res.sendFile(path.join(__dirname, "dist/index.html"));
 });
 if (ssl == "false") {
   const http = require("http");

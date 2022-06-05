@@ -1,4 +1,4 @@
-FROM node:10.13-alpine AS builder
+FROM node:16-alpine AS builder
 
 COPY package*.json /
 
@@ -15,7 +15,7 @@ ARG BUILD_ENV
 
 RUN node --max_old_space_size=5120 ./node_modules/@angular/cli/bin/ng build --prod --build-optimizer=false --output-path=dist --configuration=${BUILD_ENV} --prod
 
-FROM node:10.13-alpine
+FROM node:16-alpine
 
 ENV TZ=Asia/Bangkok
 RUN apk add tzdata \
